@@ -127,14 +127,14 @@
 
     <!-- 🔹 Página anterior -->
     <% if @prev_page %>
-      <%= link_to "⬅ Anterior",
+      <%= link_to "Voltar",
         search_path(category: @category, query: @query, page_url: @prev_page),
         class: "btn btn-outline-secondary" %>
     <% end %>
 
     <!-- 🔹 Próxima página -->
     <% if @next_page %>
-      <%= link_to "Próxima ➡",
+      <%= link_to "Próxima",
         search_path(category: @category, query: @query, page_url: @next_page),
         class: "btn btn-outline-primary ms-auto" %>
     <% end %>
