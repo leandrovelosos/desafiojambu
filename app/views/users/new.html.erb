@@ -1,0 +1,41 @@
+<!-- Container centralizado -->
+<div class="row justify-content-center">
+  <div class="col-md-6">
+
+    <div class="card shadow-sm">
+      <div class="card-body">
+
+        <h3 class="card-title mb-4 text-center">Criar Conta</h3>
+
+        <%= form_with model: @user, url: signup_path, local: true do |f| %>
+        <!-- Formulário de cadastro -->
+
+          <div class="mb-3">
+            <%= f.label :email_address, "Email" %>
+
+            <%= f.email_field :email_address, class: "form-control" %>
+          </div>
+
+          <div class="mb-3">
+            <%= f.label :password, "Senha" %>
+
+            <%= f.password_field :password, class: "form-control" %>
+          </div>
+
+          <div class="mb-3">
+            <%= f.label :password_confirmation, "Confirme a senha" %>
+
+            <%= f.password_field :password_confirmation, class: "form-control" %>
+          </div>
+
+          <div class="d-grid">
+            <%= f.submit "Cadastrar", class: "btn btn-success" %>
+          </div>
+
+        <% end %>
+
+      </div>
+    </div>
+
+  </div>
+</div>

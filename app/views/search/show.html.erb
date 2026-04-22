@@ -1,0 +1,115 @@
+<!-- app/views/search/show.html.erb -->
+
+<div class="row justify-content-center">
+  <div class="col-md-8">
+
+    <div class="card shadow-sm">
+
+      <!-- Cabeçalho -->
+      <div class="card-header bg-dark text-white">
+        <h4 class="mb-0">
+          <%= @item["name"] || @item["title"] %>
+        </h4>
+      </div>
+
+      <!-- Corpo -->
+      <div class="card-body">
+
+        <ul class="list-group list-group-flush">
+
+          <% @item.each do |key, value| %>
+
+            <% next if ["created", "edited", "url"].include?(key) %>
+            <!-- ignora campos técnicos -->
+
+            <li class="list-group-item">
+
+              <strong>
+                <%= translate_label(key) %>:
+              </strong>
+
+              <% if value.is_a?(Array) %>
+                <!-- Caso seja lista -->
+
+                <% if value.empty? %>
+
+                  <span class="text-muted">Não informado</span>
+
+                <% elsif value.all? { |v| v.to_s.start_with?("http") } %>
+                  <!-- Lista de URLs (films, vehicles, etc) -->
+
+                  <span class="text-muted">
+                    <%= "#{value.size} #{translate_label(key).downcase}" %>
+                  </span>
+
+                  <!-- 🔗 Links inline (mais elegante) -->
+                  <span class="ms-2">
+
+                    <% value.each_with_index do |v, index| %>
+
+                      <%= link_to "#{index + 1}",
+                            details_path(url: v),
+                            class: "badge bg-primary text-decoration-none me-1" %>
+                      <!-- Link numerado -->
+
+                    <% end %>
+
+                  </span>
+
+                <% else %>
+                  <!-- Lista normal -->
+
+                  <ul class="mb-0">
+
+                    <% value.each do |v| %>
+                      <li class="text-muted">
+                        <%= translate_value(v) %>
+                      </li>
+                    <% end %>
+
+                  </ul>
+
+                <% end %>
+
+              <% else %>
+                <!-- Valor simples -->
+
+                <span class="text-muted">
+
+                  <% if value.to_s.start_with?("http") %>
+                    <!-- URL isolada -->
+
+                    Não exibido
+
+                  <% else %>
+
+                    <!-- Usa formatação inteligente (cm, kg, etc) -->
+                    <%= format_value(key, value) %>
+
+                  <% end %>
+
+                </span>
+
+              <% end %>
+
+            </li>
+
+          <% end %>
+
+        </ul>
+
+      </div>
+
+      <!-- 🔹 Rodapé -->
+      <div class="card-footer text-end">
+
+        <%= link_to "Voltar",
+              request.referer || search_path,
+              class: "btn btn-outline-secondary" %>
+
+      </div>
+
+    </div>
+
+  </div>
+</div>
