@@ -53,7 +53,7 @@ Rails.application.configure do
   config.active_job.queue_adapter = :async
 
 # ActionCable sem banco
-  config.action_cable.adapter = :async
+  #config.action_cable.adapter = :async
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
