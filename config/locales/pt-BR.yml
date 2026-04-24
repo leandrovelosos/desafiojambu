@@ -1,0 +1,14 @@
+#traduçao para dos objetos do sistema 
+
+pt-BR:
+  favorites:
+    title: "Meus Favoritos"
+    empty: "Você ainda não tem favoritos." #nem precisava mas foi para padronizar
+    remove: "Remover"
+    confirm: "Tem certeza?"
+    categories:
+      people: "Personagens"
+      planets: "Planetas"
+      starships: "Naves"
+      vehicles: "Veículos"
+      species: "Espécies"

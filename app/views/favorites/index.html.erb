@@ -1,5 +1,4 @@
-<h1 class="mb-4">Meus Favoritos</h1>
-<!-- Espaçamento no título -->
+<h1 class="mb-4"><%= t("favorites.title") %></h1>
 
 <% if @grouped_favorites.present? %>
 
@@ -10,12 +9,14 @@
       <!-- Cabeçalho -->
       <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
 
-        <span><%= category.capitalize %></span>
+        <span>
+          <%= t("favorites.categories.#{category}", default: category.humanize) %>
+        </span>
 
         <span class="badge bg-light text-dark">
           <%= favorites.count %>
         </span>
-        <!-- Quantidade de itens -->
+
       </div>
 
       <ul class="list-group list-group-flush">
@@ -28,10 +29,10 @@
                 details_path(url: fav.url),
                 class: "text-decoration-none fw-bold" %>
 
-            <%= button_to "Remover",
+            <%= button_to t("favorites.remove"),
               favorite_path(fav),
               method: :delete,
-              data: { confirm: "Tem certeza?" },
+              data: { confirm: t("favorites.confirm") },
               class: "btn btn-sm btn-outline-danger" %>
 
           </li>
@@ -47,7 +48,7 @@
 <% else %>
 
   <div class="alert alert-info text-center">
-    Você ainda não tem favoritos.
+    <%= t("favorites.empty") %>
   </div>
 
 <% end %>
